@@ -1,0 +1,70 @@
+/* ============ Календарь загрузки сервиса ============ */
+.cal-toolbar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: space-between; }
+.cal-switch { display: inline-flex; border: 1px solid var(--border); border-radius: 9px; overflow: hidden; }
+.cal-switch a {
+  padding: 7px 14px; font-size: 12.5px; font-weight: 600; color: var(--muted);
+  background: #fff; border-right: 1px solid var(--border);
+}
+.cal-switch a:last-child { border-right: 0; }
+.cal-switch a:hover { background: var(--surface-2); text-decoration: none; color: var(--text); }
+.cal-switch a.on { background: var(--accent); color: #fff; }
+
+.cal-legend { display: flex; gap: 12px; flex-wrap: wrap; font-size: 11.5px; color: var(--muted); }
+.cal-legend i { width: 9px; height: 9px; border-radius: 3px; display: inline-block; margin-right: 5px; vertical-align: middle; }
+
+/* --- Сетка по постам --- */
+.cal-board { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.cal-col { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+.cal-col-head { padding: 11px 14px; border-bottom: 1px solid var(--border); background: #fff; }
+.cal-col-head .name { font-weight: 700; font-size: 13.5px; }
+.cal-col-body { padding: 10px; display: flex; flex-direction: column; gap: 9px; flex: 1; min-height: 120px; }
+.cal-col-empty { color: var(--muted); font-size: 12px; text-align: center; padding: 22px 0; }
+
+/* --- Карточка наряда --- */
+.cal-card {
+  display: block; background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--muted);
+  border-radius: 9px; padding: 9px 11px; color: inherit;
+}
+.cal-card:hover { background: var(--surface-2); text-decoration: none; border-color: #cbd5e1; }
+.cal-card .t { font-weight: 700; font-size: 12.5px; display: flex; justify-content: space-between; gap: 8px; }
+.cal-card .m { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+.cal-card .f { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 7px; }
+.st-new { border-left-color: #2563eb; }
+.st-in_progress { border-left-color: #d97706; }
+.st-waiting { border-left-color: #7c3aed; }
+.st-ready { border-left-color: #16a34a; }
+.st-issued { border-left-color: #94a3b8; opacity: .78; }
+.late { background: var(--red-soft); color: #7f1d1d; padding: 1px 7px; border-radius: 999px; font-size: 10.5px; font-weight: 700; }
+
+/* --- Месячная сетка --- */
+.cal-month { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 1px; background: var(--border); }
+.cal-month-head { padding: 8px 10px; text-align: center; font-size: 11px; font-weight: 700; color: var(--muted); background: var(--surface-2); text-transform: uppercase; letter-spacing: .04em; }
+.cal-cell { background: #fff; padding: 7px 8px; min-height: 92px; display: flex; flex-direction: column; gap: 5px; position: relative; }
+.cal-cell.out { background: #f8fafc; }
+.cal-cell.today { background: #eff6ff; box-shadow: inset 0 0 0 2px var(--accent); }
+.cal-cell .num { font-size: 12.5px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
+.cal-cell .num .wd { font-size: 10px; color: var(--muted); font-weight: 600; }
+.cal-cell .mini { font-size: 11px; color: var(--muted); display: flex; gap: 6px; flex-wrap: wrap; }
+.cal-cell .mini b { color: var(--text); font-variant-numeric: tabular-nums; }
+.cal-dots { display: flex; gap: 3px; flex-wrap: wrap; }
+.cal-dots i { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
+.cal-cell .bar { height: 4px; border-radius: 999px; background: #e2e8f0; overflow: hidden; margin-top: auto; }
+.cal-cell .bar > i { display: block; height: 100%; border-radius: 999px; }
+.cal-weekend { background: #fcfcfd; }
+
+/* --- Недельная сетка: посты × дни --- */
+.cal-week { table-layout: fixed; min-width: 900px; }
+.cal-week td, .cal-week th { vertical-align: top; }
+.cal-week tbody td { padding: 9px 8px; }
+.cal-day-head { width: auto; text-transform: none; letter-spacing: 0; font-size: 12px; color: var(--text); }
+.cal-day-head.on { background: var(--accent-soft); color: var(--accent); }
+.cal-card.mini { padding: 6px 8px; margin-bottom: 5px; border-left-width: 3px; }
+.cal-card.mini .t { font-size: 11.5px; }
+.cal-card.mini .m { font-size: 10.5px; }
+td.cal-cell-today { background: #eff6ff; }
+
+@media (max-width: 900px) {
+  .cal-month { font-size: 11px; }
+  .cal-cell { min-height: 64px; padding: 5px; }
+  .cal-cell .mini { display: none; }
+}
